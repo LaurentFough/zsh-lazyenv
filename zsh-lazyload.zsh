@@ -75,6 +75,7 @@ function lazyenv-enabled
 
     # init envs
     lazyload init:nvm    nvm
+    lazyload init:rvm    rvm
     lazyload init:jenv   jenv
     lazyload init:goenv  goenv
     lazyload init:plenv  plenv

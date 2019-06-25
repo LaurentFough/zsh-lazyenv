@@ -1,5 +1,6 @@
 # https://nick-tomlin.com/2018/03/10/speeding-up-zsh-loading-times-by-lazily-loading-nvm/
 
+# Try to find nvm, if it's not on the path
 export NVM_DIR="${NVM_DIR:=${HOME}/.nvm}"
 if ! type nvm > /dev/null && [ -f "${NVM_DIR}/bin/nvm" ]; then
     export PATH="${NVM_DIR}/bin:${PATH}"
@@ -8,10 +9,10 @@ fi
 # Lazy load nvm
 if type nvm > /dev/null; then
     export PATH="${NVM_DIR}/bin:${NVM_DIR}/shims:${PATH}"
-fi
-if [[ $OSTYPE == "darwin"* ]]; then
-    [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh --no-use
-else
-    [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
-    [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+    if [[ $OSTYPE == "darwin"* ]]; then
+        [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh --no-use
+    else
+        [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh" --no-use
+        [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+    fi
 fi

@@ -1,0 +1,3 @@
+unfunction kubectl
+source <(kubectl completion zsh)
+kubectl $@

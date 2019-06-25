@@ -1,4 +1,5 @@
 # @kadaan/zsh-goenv-lazy
+
 # Try to find goenv, if it's not on the path
 export GOENV_ROOT="${GOENV_ROOT:=${HOME}/.goenv}"
 if ! type goenv > /dev/null && [ -f "${GOENV_ROOT}/bin/goenv" ]; then

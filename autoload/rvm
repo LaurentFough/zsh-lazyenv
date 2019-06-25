@@ -1,0 +1,2 @@
+unset -f rvm > /dev/null 2>&1
+rvm $@
