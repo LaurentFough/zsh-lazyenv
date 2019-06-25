@@ -7,7 +7,7 @@
 # default cache directory
 export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 
-function _evalcache ()
+function evalcache ()
 {
     local cacheFile="$ZSH_EVALCACHE_DIR/init-${1##*/}.sh"
 
@@ -27,7 +27,7 @@ function _evalcache ()
     fi
 }
 
-function _evalcache_clear ()
+function evalcache_clear ()
 {
     rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
 }
@@ -35,7 +35,7 @@ function _evalcache_clear ()
 function eval
 {
     local eval_command=$1
-    alias eval=_evalcache
+    alias eval=evalcache
     eval $@
 }
 
@@ -44,7 +44,8 @@ function eval
 #
 # Usage: lazyload <load-command> <command-name...>
 # Load functions prefixed with init: will be unloaded by lazyload after first usage
-function lazyload {
+function lazyload
+{
   local load_cmd=$1; shift
   local cmd_list=($@); shift $#
 
@@ -53,7 +54,8 @@ function lazyload {
   done
 }
 
-function lazyload: {
+function lazyload:
+{
   local load_cmd=$1; shift
   local alias_list=($@); shift $#
 
