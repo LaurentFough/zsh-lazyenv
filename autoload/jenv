@@ -1,0 +1,5 @@
+# @shihyuho/zsh-jenv-lazy
+
+unset -f jenv > /dev/null 2>&1
+evalcache command jenv init -
+jenv $@

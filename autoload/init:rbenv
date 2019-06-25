@@ -1,0 +1,12 @@
+# @kadaan/zsh-rbenv-lazy
+# Try to find rbenv, if it's not on the path
+export RBENV_ROOT="${RBENV_ROOT:=${HOME}/.rbenv}"
+if ! type rbenv > /dev/null && [ -f "${RBENV_ROOT}/bin/rbenv" ]; then
+    export PATH="${RBENV_ROOT}/bin:${PATH}"
+fi
+
+# Lazy load rbenv
+if type rbenv > /dev/null; then
+    export PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
+    source $(dirname $(greadlink -f `whence -p rbenv`))/../completions/rbenv.zsh
+fi

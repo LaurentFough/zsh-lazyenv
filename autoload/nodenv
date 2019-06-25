@@ -1,0 +1,4 @@
+# @kadaan/zsh-nodenv-lazy
+unset -f nodenv > /dev/null 2>&1
+evalcache command nodenv init -
+nodenv $@

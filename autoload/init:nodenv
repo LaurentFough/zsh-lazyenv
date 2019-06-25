@@ -1,0 +1,12 @@
+# @kadaan/zsh-nodenv-lazy
+# Try to find nodenv, if it's not on the path
+export NODENV_ROOT="${NODENV_ROOT:=${HOME}/.nodenv}"
+if ! type nodenv > /dev/null && [ -f "${NODENV_ROOT}/bin/nodenv" ]; then
+    export PATH="${NODENV_ROOT}/bin:${PATH}"
+fi
+
+# Lazy load nodenv
+if type nodenv > /dev/null; then
+    export PATH="${NODENV_ROOT}/bin:${NODENV_ROOT}/shims:${PATH}"
+    source $(dirname $(greadlink -f `whence -p nodenv`))/../completions/nodenv.zsh
+fi

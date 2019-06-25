@@ -1,0 +1,14 @@
+# @shihyuho/zsh-jenv-lazy && @kadaan/zsh-jenv-lazy
+
+# Try to find jenv, if it's not on the path
+export JENV_ROOT="${JENV_ROOT:=${HOME}/.jenv}"
+if ! type jenv > /dev/null && [ -f "${JENV_ROOT}/bin/jenv" ]; then
+    export PATH="${JENV_ROOT}/bin:${PATH}"
+fi
+
+# Lazy load jenv
+if type jenv > /dev/null; then
+    export PATH="${JENV_ROOT}/bin:${JENV_ROOT}/shims:${PATH}"
+    source $(dirname $(greadlink -f `whence -p jenv`))/../libexec/completions/jenv.zsh
+    [[ -s "${JENV_ROOT}/bin/jenv-init.sh" ]] && source "${JENV_ROOT}/bin/jenv-init.sh" && source "${JENV_ROOT}/commands/completion.sh"
+fi

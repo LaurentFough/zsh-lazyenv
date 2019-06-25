@@ -1,0 +1,4 @@
+# @kadaan/zsh-plenv-lazy
+unset -f plenv > /dev/null 2>&1
+evalcache command plenv init -
+plenv $@

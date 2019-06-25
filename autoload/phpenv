@@ -1,0 +1,4 @@
+# @kadaan/zsh-phpenv-lazy
+unset -f phpenv > /dev/null 2>&1
+evalcache command phpenv init -
+phpenv $@

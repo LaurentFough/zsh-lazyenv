@@ -1,0 +1,12 @@
+# @kadaan/zsh-phpenv-lazy
+# Try to find phpenv, if it's not on the path
+export PHPENV_ROOT="${PHPENV_ROOT:=${HOME}/.phpenv}"
+if ! type phpenv > /dev/null && [ -f "${PHPENV_ROOT}/bin/phpenv" ]; then
+    export PATH="${PHPENV_ROOT}/bin:${PATH}"
+fi
+
+# Lazy load phpenv
+if type phpenv > /dev/null; then
+    export PATH="${PHPENV_ROOT}/bin:${PHPENV_ROOT}/shims:${PATH}"
+    source $(dirname $(greadlink -f `whence -p phpenv`))/../completions/phpenv.zsh
+fi

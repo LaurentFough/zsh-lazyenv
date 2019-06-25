@@ -7,7 +7,7 @@
 # default cache directory
 export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
 
-function evalcache ()
+function evalcache
 {
     local cacheFile="$ZSH_EVALCACHE_DIR/init-${1##*/}.sh"
 
@@ -27,16 +27,9 @@ function evalcache ()
     fi
 }
 
-function evalcache_clear ()
+function evalcache_clear
 {
     rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
-}
-
-function eval
-{
-    local eval_command=$1
-    alias eval=evalcache
-    eval $@
 }
 
 ##-------------------- qoomon/zsh-lazyload --------------------
@@ -60,9 +53,33 @@ function lazyload:
   local alias_list=($@); shift $#
 
   unalias $alias_list
-  eval $load_cmd
+  evalcache $load_cmd
 
   if [[ ${(kM)functions:#$load_cmd} ]] && [[ $load_cmd == 'init:'* ]]; then
     unfunction $load_cmd
   fi
+}
+
+
+##-------------------- black7375/zsh-lazyenv --------------------
+function lazyenv-enabled
+{
+    # autoload
+    AUTOENVFUNC="${0:h}/autoload"
+    fpath+="${AUTOENVFUNC}"
+    if [[ -d "$AUTOENVFUNC" ]]; then
+        for func in $AUTOENVFUNC/*; do
+            autoload -Uz ${func:t}
+        done
+    fi
+
+    # init envs
+    lazyload init:nvm    nvm
+    lazyload init:jenv   jenv
+    lazyload init:goenv  goenv
+    lazyload init:plenv  plenv
+    lazyload init:pyenv  pyenv
+    lazyload init:rbenv  rbenv
+    lazyload init:nodenv nodenv
+    lazyload init:phpenv phpenv
 }
