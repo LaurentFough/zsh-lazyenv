@@ -17,7 +17,7 @@ Load functions prefixed with `init:` will be unloaded by `lazyload` after first 
 ```
 load:nvm(){
 'source "$(brew --prefix nvm)/nvm.sh"'
-}n
+}
 lazyload init:nvm nvm
 ```
 
