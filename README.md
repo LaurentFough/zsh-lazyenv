@@ -28,6 +28,7 @@ speed up start up time of zsh!!
 - [phpenv](https://github.com/phpenv/phpenv)
 
 **lazy functions**
+- [thefuck](https://github.com/nvbn/thefuck)
 - [hub](https://github.com/github/hub)
 - [kubectl](https://github.com/kubernetes/kubectl)
 - [scmpuff](https://github.com/mroth/scmpuff)
