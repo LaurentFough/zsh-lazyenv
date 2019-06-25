@@ -1,0 +1,16 @@
+local envname=$1
+local upname=${(U)envname}
+alias ENV_ROOT="${(U)envname}_ROOT"
+typeset -g ${upname}_ROOT="${ENV_ROOT:=${HOME}/.${envname}}"
+
+# Try to find envenv, if it's not on the path
+export ${upname}_ROOT
+if ! type ${envname} > /dev/null && [ -f "${upname}_ROOT/bin/${envname}" ]; then
+    export PATH="${${upname}_ROOT}/bin:${PATH}"
+fi
+
+# Lazy load envenv
+if type ${envname} > /dev/null; then
+    export PATH="${${upname}_ROOT}/bin:${${upname}_ROOT}/shims:${PATH}"
+    sourc${envname}.zsh
+fi

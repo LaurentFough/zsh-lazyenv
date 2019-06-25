@@ -1,0 +1,4 @@
+local envname=$1
+unset -f $envname > /dev/null 2>&1
+evalcache command $envname init -
+$envname $@
