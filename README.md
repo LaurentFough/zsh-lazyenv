@@ -1,9 +1,13 @@
 # zsh-lazyload
-zsh plugin for lazy load commands and speed up start up time of zsh
+zsh plugin for lazy load commands and eval caching.  
+speed up start up time of zsh!!
 
+**fork from [lazyload](https://github.com/qoomon/zsh-lazyload), 
+[evalcache](https://github.com/mroth/evalcache).**
 
 ## Usage
 
+### Lazy Load
 `lazyload <load-command> <command-name...>`
 
 #### Examples
@@ -12,10 +16,22 @@ zsh plugin for lazy load commands and speed up start up time of zsh
 Load functions prefixed with `init:` will be unloaded by `lazyload` after first usage
 ```
 load:nvm(){
-  'source "$(brew --prefix nvm)/nvm.sh"'
-}
+'source "$(brew --prefix nvm)/nvm.sh"'
+}n
 lazyload init:nvm nvm
 ```
+
+### Eval Cache
+`evalcache <command> <generation args...>`
+
+#### Examples
+`eval "$(hub alias -s)"` to `_evalcache hub alias -s`
+
+#### Options
+
+- `$ZSH_EVALCACHE_DIR`: cache files storage, default `$HOME/.zsh-evalcache`.
+- `$ZSH_EVALCACHE_DISABLE`: set to `true` if you wish to bypass evalcache.
+
 
 ## Install
 

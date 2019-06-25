@@ -2,7 +2,7 @@
 # Caches the output of a binary initialization command, to avoid the time to
 # execute it in the future.
 #
-# Usage: _evalcache <command> <generation args...>
+# Usage: evalcache <command> <generation args...>
 
 # default cache directory
 export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
