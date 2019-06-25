@@ -10,11 +10,11 @@ function lazyload {
 function lazyload: {
   local load_cmd=$1; shift
   local alias_list=($@); shift $#
-  
+
   unalias $alias_list
   eval $load_cmd
-  
-  if [[ ${(kM)functions:#$load_cmd} ]] && [[ $load_cmd == 'load:'* ]]; then
+
+  if [[ ${(kM)functions:#$load_cmd} ]] && [[ $load_cmd == 'init:'* ]]; then
     unfunction $load_cmd
   fi
 }
