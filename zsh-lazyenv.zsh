@@ -62,10 +62,10 @@ function lazyload:
 
 
 ##-------------------- black7375/zsh-lazyenv --------------------
+export AUTOENVFUC="$( cd "$(dirname "$0")" ; pwd )/autoload"
 function lazyenv-enabled
 {
     # autoload
-    AUTOENVFUNC="${0:h}/autoload"
     fpath+="${AUTOENVFUNC}"
     if [[ -d "$AUTOENVFUNC" ]]; then
         for func in $AUTOENVFUNC/*; do
