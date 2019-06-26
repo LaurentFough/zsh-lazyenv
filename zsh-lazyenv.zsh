@@ -62,7 +62,8 @@ function lazyload:
 
 
 ##-------------------- black7375/zsh-lazyenv --------------------
-export AUTOENVFUC="$( cd "$(dirname "$0")" ; pwd )/autoload"
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+export AUTOENVFUNC=${AUTOENVFUC:-"${0:A:h}/autoload"}
 function lazyenv-enabled
 {
     # autoload
@@ -83,4 +84,8 @@ function lazyenv-enabled
     lazyload init:rbenv  rbenv
     lazyload init:nodenv nodenv
     lazyload init:phpenv phpenv
+
+    lazyload init:hub     hub
+    lazyload init:fuck    fuck
+    lazyload init:scmpuff scmpuff
 }

@@ -1,2 +1,1 @@
 evalcache hub alias -s
-hub $@
