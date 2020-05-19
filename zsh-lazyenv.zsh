@@ -5,7 +5,7 @@
 # Usage: evalcache <command> <generation args...>
 
 # default cache directory
-export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$HOME/.zsh-evalcache"}
+export ZSH_EVALCACHE_DIR=${ZSH_EVALCACHE_DIR:-"$ZDOTDIR/.zsh-evalcache"}
 
 function evalcache
 {
@@ -29,7 +29,7 @@ function evalcache
 
 function evalcache_clear
 {
-    rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
+    command rm -i "$ZSH_EVALCACHE_DIR"/init-*.sh
 }
 
 ##-------------------- qoomon/zsh-lazyload --------------------
